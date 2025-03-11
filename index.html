@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional CV of Trần Minh - Web Designer">
+    <meta name="keywords" content="web design, frontend developer, UI/UX designer">
+    <title>Trần Minh - Web Designer</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<style>
+    body, html {
+    background-image: url(Background.png);
+    background-repeat: repeat;
+    background-size: cover;
+    background-attachment: fixed;  
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #f0f2f5;
+}
+
+.resume {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+    max-width: 1200px;
+    margin: 20px auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .resume {
+        flex-direction: column;
+        margin: 0;
+        border-radius: 0;
+    }
+    .sidebar {
+        width: 100%;
+    }
+    .main-content {
+        width: 100%;
+    }
+}
+
+.sidebar {
+    background-color: RGB(76, 88, 68);
+    padding: 20px;
+    width: 30%;
+    box-sizing: border-box;
+    color: #fff;
+}
+
+.profile-pic-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.profile-pic-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 3;
+}
+
+.profile-pic-overlay span {
+    color: white;
+    font-size: 14px;
+    text-align: center;
+}
+
+.profile-pic-container:hover .profile-pic-overlay {
+    opacity: 1;
+}
+
+.profile-pic {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.profile-pic-container:hover .profile-pic {
+    transform: scale(1.05);
+}
+
+.contact-info p, .skills label, .languages label {
+    margin: 10px 0;
+}
+
+.contact-info p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    transition: transform 0.2s ease;
+}
+
+.contact-info p:hover {
+    transform: translateX(5px);
+}
+
+progress {
+    width: 100%;
+    height: 8px;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 4px;
+    margin: 8px 0 15px;
+}
+
+progress::-webkit-progress-bar {
+    background-color: #ddd;
+    border-radius: 10px;
+}
+
+progress::-webkit-progress-value {
+    background: linear-gradient(90deg, #3498db, #2ecc71);
+    border-radius: 10px;
+}
+
+.main-content {
+    padding: 40px;
+    width: 70%;
+    background-color: #ffffff;
+    color: #333;
+    line-height: 1.8;
+}
+
+h1, h2 {
+    color: #2c3e50;
+}
+
+h2 {
+    margin-top: 0;
+    /* border-bottom: 2px solid #2c3e50; */
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+}
+
+.main-content p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.education-entry, .experience-entry, .about-entry {
+    padding: 20px;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    transition: transform 0.2s ease;
+}
+
+.education-entry:hover, .experience-entry:hover, .about-entry:hover {
+    transform: translateY(-5px);
+}
+
+.education-entry h3, .experience-entry h3, .about-entry h3 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.education-entry p, .experience-entry p, .about-entry p {
+    margin: 5px 0 15px;
+}
+
+h3 {
+    font-weight: normal;
+    color: #2c3e50;
+}
+
+#contactForm {
+    display: flex;
+    flex-direction: column;
+}
+
+#contactForm label {
+    margin: 10px 0 5px;
+}
+
+#contactForm input, #contactForm textarea {
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 2px solid #eee;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+#contactForm input:focus, #contactForm textarea:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+#contactForm button {
+    padding: 12px 24px;
+    background-color: RGB(251,126,20);
+    color: RGB(0,0,0);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.2s ease;
+}
+
+#contactForm button:hover {
+    transform: translateY(-2px);
+    color: white;
+    background-color: black;
+}
+
+#confirmationMessage {
+    color: green;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.contact-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-form {
+    max-width: 100%;
+    margin-top: 20px;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.form-group label {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #fff;
+    padding: 0 5px;
+    color: #666;
+    transition: all 0.2s ease;
+    pointer-events: none;
+}
+
+.form-group textarea ~ label {
+    top: 25px;
+}
+
+.form-group input:focus ~ label,
+.form-group textarea:focus ~ label,
+.form-group input:not(:placeholder-shown) ~ label,
+.form-group textarea:not(:placeholder-shown) ~ label {
+    top: -15px;
+    left: 10px;
+    font-size: 14px;
+    color: #3498db;
+    transform: translateY(0);
+}
+
+.form-group input:not(:placeholder-shown) + label,
+.form-group textarea:not(:placeholder-shown) + label,
+.form-group input:focus + label,
+.form-group textarea:focus + label {
+    transform: translateY(-20px) scale(0.85);
+    color: #3498db;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.form-group textarea {
+    min-height: 150px;
+    margin-top: 10px;
+    resize: vertical;
+    font-family: inherit;
+}
+
+.form-group textarea:focus ~ label,
+.form-group textarea:not(:placeholder-shown) ~ label {
+    top: -15px;
+    background: #fff;
+    padding: 0 5px;
+    font-size: 16px;  /* Tăng kích thước chữ */
+    font-weight: 500; /* Thêm độ đậm cho chữ */
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+}
+
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    border-radius: 8px;
+    color: white;
+    background-color: #2ecc71;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+}
+
+.notification.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+</style>
+<body>
+    <div class="resume">
+        <aside class="sidebar">
+            <div class="profile-section">
+                <div class="profile-pic-container">
+                    <img src="Avatar.png" alt="profilepic" class="profile-pic" id="profilePic">
+                    <input type="file" id="profilePicInput" accept="image/*" style="display: none;">
+                    <div class="profile-pic-overlay">
+                        <span>Click to change</span>
+                    </div>
+                </div>
+                <div class="contact-info">
+                    <p><img src="user.png" width="20" height="20" alt=""><i class="fas fa-phone"></i> Trần Minh</p>
+                    <p><img src="phone-call.png" width="20" height="20" alt=""><i class="fas fa-phone"></i> +53 112234-05</p>
+                    <p><img src="mail.png" width="20" height="20" alt=""><i class="fas fa-envelope"></i> minhbimbim@gmail.com</p>
+                    <p><img src="location.png" width="20" height="20" alt=""><i class="fas fa-map-marker-alt"></i> Hanoi, Vietnam</p>
+                </div>
+            </div>
+            <div class="skills">
+                <h3>Skills</h3>
+                <label>Photoshop</label>
+                <progress value="80" max="100"></progress>
+                <label>Dreamweaver</label>
+                <progress value="60" max="100"></progress>
+                <label>Illustrator</label>
+                <progress value="70" max="100"></progress>
+                <label>Java / CSS</label>
+                <progress value="90" max="100"></progress>
+            </div>
+            <div class="languages">
+                <label>English</label>
+                <progress value="100" max="100"></progress>
+            </div>
+        </aside>
+        <main class="main-content">
+            <section class="about-me">
+                <h2>About Me</h2>
+                <div class="about-entry">
+                    <h3>Introduction</h3>
+                    <p><strong>Web Designer</strong></p>
+                    <p>Hi, I'm Bin, a passionate web designer with a keen eye for detail and a drive for creating beautiful, functional websites. I believe in the power of good design to transform user experiences and achieve business goals.</p>
+                </div>
+            </section>
+            <section class="education">
+                <h2>Education</h2>
+                <div class="education-entry">
+                    <h3>2010 - 2015</h3>
+                    <p><strong>Junior High School</strong> - TTHNT School</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+                <div class="education-entry">
+                    <h3>2015 - 2019</h3>
+                    <p><strong>BS Fine Arts Major in Advertising / Web Design</strong> - Montriad University</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+            </section>
+            <section class="experience">
+                <h2>Experience</h2>
+                <div class="experience-entry">
+                    <h3>2019</h3>
+                    <p><strong>Junior Graphic Designer</strong> - Leafpages Advertising</p>
+                    <p>Engaged in multiple projects that enhanced my design skills and exposed me to new techniques in web advertising.</p>
+                </div>
+                <div class="experience-entry">
+                    <h3>2020 - Present</h3>
+                    <p><strong>Web Designer</strong> - Sirius Design Agency</p>
+                    <p>Currently leading various design projects that aim to enhance user experiences on commercial websites.</p>
+                </div>
+            </section>
+            <section class="contact">
+                <h2>Contact Me</h2>
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder=" " required>
+                        <label for="name">Full Name</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder=" " required>
+                        <label for="email">Email Address</label>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" placeholder=" " required></textarea>
+                        <label for="message">Your Message...</label>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+                <div id="confirmationMessage" class="notification">Thank you! Your message has been sent.</div>
+            </section>
+        </main>
+    </div>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const form = this;
+            const notification = document.getElementById('confirmationMessage');
+            
+            if(form.checkValidity()) {
+                notification.classList.add('show');
+                form.reset();
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+            }
+        });
+        
+        // Profile picture change functionality
+        const profilePicContainer = document.querySelector('.profile-pic-container');
+        const profilePicInput = document.getElementById('profilePicInput');
+
+        profilePicContainer.addEventListener('click', () => {
+            profilePicInput.click();
+        });
+
+        profilePicInput.addEventListener('change', function(e) {
+            if (this.files && this.files[0]) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    profilePic.src = e.target.result;
+                };
+                
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+    </script>
+</body>
+</html>
+
+
